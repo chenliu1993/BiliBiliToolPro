@@ -32,3 +32,19 @@ build: #### build the plugin
 install: #### install the plugin
 	@cd ${ROOT_DIR}/krew/cmd && \
       sudo install ./$(BIN_NAME) ${KUBECTL_DIR}/$(BIN_NAME)
+
+
+### generate a new plugin manifest
+
+.PHONY: plugin
+plugin: build tar generate-manifest ####
+
+.PHONY: tar
+tar: #### tar the plugin binary
+	@cd ${ROOT_DIR}/krew/cmd && \
+	  tar -zcvf ../bilipro.tar.gz .
+
+.PHONY: generate-manifest
+generate-manifest: #### generate krew manifest
+	@cd ${ROOT_DIR}/krew && \
+	  sed -i 's/sha256:.*/sha256:\ ${shell sha256sum bilipro.tar.gz | cut -d' ' -f1}/' bilipro.yaml

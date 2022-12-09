@@ -10,9 +10,16 @@
 ## Install Plugin
 
 Command: `cd ./krew && make deploy`
-The binary will be generated in cmd/ install it alonside the kubectl binary. 
+The binary will be generated in `cmd/`, install it alonside the kubectl binary. 
 
 For example: the kubectl is installed under `/usr/bin`, then put the bilibilipro plugin under `/usr/bin` too.
+
+````bash
+install kubectl-bilipro /usr/bin/kubectl-bilipro
+````
+
+You may need to be root to run above command
+
 
 ## Plugin Commands
 
